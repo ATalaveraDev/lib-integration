@@ -2,5 +2,170 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "loriot-ui": {
+      "root": "projects/loriot-ui",
+      "sourceRoot": "projects/loriot-ui/src",
+      "projectType": "library",
+      "prefix": "lrt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/loriot-ui/tsconfig.lib.json",
+            "project": "projects/loriot-ui/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/loriot-ui/src/test.ts",
+            "tsConfig": "projects/loriot-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/loriot-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/loriot-ui/tsconfig.lib.json",
+              "projects/loriot-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "loriot-nsw": {
+      "root": "projects/loriot-nsw/",
+      "sourceRoot": "projects/loriot-nsw/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/loriot-nsw",
+            "index": "projects/loriot-nsw/src/index.html",
+            "main": "projects/loriot-nsw/src/main.ts",
+            "polyfills": "projects/loriot-nsw/src/polyfills.ts",
+            "tsConfig": "projects/loriot-nsw/tsconfig.app.json",
+            "assets": [
+              "projects/loriot-nsw/src/favicon.ico",
+              "projects/loriot-nsw/src/assets"
+            ],
+            "styles": [
+              "projects/loriot-nsw/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/loriot-nsw/src/environments/environment.ts",
+                  "with": "projects/loriot-nsw/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "loriot-nsw:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "loriot-nsw:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "loriot-nsw:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/loriot-nsw/src/test.ts",
+            "polyfills": "projects/loriot-nsw/src/polyfills.ts",
+            "tsConfig": "projects/loriot-nsw/tsconfig.spec.json",
+            "karmaConfig": "projects/loriot-nsw/karma.conf.js",
+            "styles": [
+              "projects/loriot-nsw/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/loriot-nsw/src/favicon.ico",
+              "projects/loriot-nsw/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/loriot-nsw/tsconfig.app.json",
+              "projects/loriot-nsw/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "loriot-nsw-e2e": {
+      "root": "projects/loriot-nsw-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/loriot-nsw-e2e/protractor.conf.js",
+            "devServerTarget": "loriot-nsw:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "loriot-nsw:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/loriot-nsw-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "loriot-ui"
 }
