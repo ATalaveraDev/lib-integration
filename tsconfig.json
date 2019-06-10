@@ -20,10 +20,18 @@
     ],
     "paths": {
       "loriot-ui": [
+        "dist/loriot-ui",
         "dist/loriot-ui"
       ],
       "loriot-ui/*": [
+        "dist/loriot-ui/*",
         "dist/loriot-ui/*"
+      ],
+      "foo-lib": [
+        "dist/foo-lib"
+      ],
+      "foo-lib/*": [
+        "dist/foo-lib/*"
       ]
     }
   }

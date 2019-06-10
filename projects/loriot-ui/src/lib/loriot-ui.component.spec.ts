@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlueComponent } from './blue.component';
+import { LoriotUiComponent } from './loriot-ui.component';
 
-describe('BlueComponent', () => {
-  let component: BlueComponent;
-  let fixture: ComponentFixture<BlueComponent>;
+describe('LoriotUiComponent', () => {
+  let component: LoriotUiComponent;
+  let fixture: ComponentFixture<LoriotUiComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BlueComponent ]
+      declarations: [ LoriotUiComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BlueComponent);
+    fixture = TestBed.createComponent(LoriotUiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
